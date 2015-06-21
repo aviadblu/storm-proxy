@@ -145,7 +145,7 @@ var nginxCtrl = {
     },
 
     reloadNginx: function (callback) {
-        var child = exec("service nginx reload", function (error, stdout, stderr) {
+        var child = exec("service nginx restart", function (error, stdout, stderr) {
             sys.print('stdout: ' + stdout);
             if(stderr) {
                 sys.print('stderr: ' + stderr);
