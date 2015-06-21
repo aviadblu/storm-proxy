@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Storm Proxy</title>
+    <link rel="stylesheet" href="bower/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body ng-app="stormProxy">
+    <div class="container main" ng-controller="mainCtrl as ctrl">
+        <div ng-show="ctrl.status.ready">
+            <form class="form-inline" ng-repeat="site in ctrl.sites">
+                <div class="form-group">
+                    <label>API URL</label>
+                    <input type="url" class="form-control" ng-model="site.proxy" placeholder="http://localhost:3030">
+                </div>
+                <div class="form-group">
+                    <label>Local root</label>
+                    <input type="text" class="form-control" ng-model="site.root"  placeholder="/home/<user>/dev/ptaas/main.webapp/build">
+                </div>
+                <div class="form-group">
+                    <label>Port</label>
+                    <input type="text" class="form-control" ng-model="site.listen"  placeholder="6000">
+                </div>
+                <div class="form-group">
+                    <label>TENANTID</label>
+                    <input type="text" class="form-control" ng-model="ctrl.TENANTID[$index]" />
+                    <a target="_blank" ng-href="http://localhost:{{site.listen}}/home/?TENANTID={{ctrl.TENANTID[$index]}}">http://localhost:{{site.listen}}/home/?TENANTID={{ctrl.TENANTID[$index]}}</a>
+                </div>
+                <button type="button" class="btn btn-danger" ng-click="ctrl.removeRecord($index)">Delete</button>
+            </form>
+        </div>
+        <div ng-hide="ctrl.status.ready">
+            Please wait...
+        </div>
+
+        <div class="save_button">
+            <button type="button" class="btn btn-primary" ng-click="ctrl.addNew()">+ Add new record</button>
+            <button ng-click="ctrl.saveChanges()" ng-disabled="ctrl.status.save_button.btn_disabled" type="button" class="btn" ng-class="ctrl.status.save_button.but_class" ng-bind="ctrl.status.save_button.label"></button>
+        </div>
+
+        <div class="has-error">
+            <label ng-bind="ctrl.save_error"></label>
+        </div>
+    </div>
+    <script src="bower/angular/angular.min.js"></script>
+    <script src="bower/angular-bootstrap/ui-bootstrap.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

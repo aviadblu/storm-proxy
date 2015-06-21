@@ -1,0 +1,24 @@
+.container {
+  &.main {
+    padding-top:20px;
+
+    .form-inline {
+      padding:10px 0px;
+      border-bottom: 1px solid gray;
+    }
+
+    .save_button {
+      padding-top:20px;
+      text-align:center;
+
+      .btn {
+        width:200px;
+      }
+    }
+
+    .has-error {
+      color: #a94442;
+    }
+
+  }
+}
