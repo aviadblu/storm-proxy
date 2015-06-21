@@ -39,6 +39,11 @@ var nginxCtrl = {
         fs.readdir('/etc/nginx/conf.d', function (err, files) {
             var c = 0;
             var files_c = 0;
+            if(files.length < 1) {
+                callback([]);
+                return;
+            }
+
             for (var i in files) {
                 var file_name = files[i];
 
